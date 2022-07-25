@@ -29,7 +29,7 @@ namespace AddressBook
             while (true)
             {
 //used goto method to call the method again
-                Repeat: Console.WriteLine("Please enter first name, last name, address, city, state, zip, phoneno and email");
+Repeat: Console.WriteLine("Please enter first name, last name, address, city, state, zip, phoneno and email");
                 Console.Write("Enter First Name: ");
                 string firstName = Console.ReadLine();
                 if (firstName == "")
@@ -94,7 +94,7 @@ namespace AddressBook
             ContactPersonInformation contact = new ContactPersonInformation();
 //using go to method for repeating the process
 //better process is using exceptions
-            addingDetailsAgainForEditing: Console.WriteLine("Please help us, first identify you");
+addingDetailsAgainForEditing: Console.WriteLine("Please help us, first identify you");
             Console.WriteLine("Please enter your first name and phone no");
             Console.Write("Enter First Name: ");
             string firstNm = Console.ReadLine();
@@ -107,13 +107,13 @@ namespace AddressBook
                 if (contactDetails.firstName == firstNm && contactDetails.phoneNo == mobileNo)
                 {
 //asking user to input detail of what needs to be edited and forwarding the input to switch case.
-                    EditAgain: Console.WriteLine("please select the serial no. of field which you want to change\n1. First name \n2.Last name\n3.Address\n4.City\n5.State\n6.Zip code\n7.Phone no.\n8.email");
+EditAgain: Console.WriteLine("please select the serial no. of field which you want to change\n1. First name \n2.Last name\n3.Address\n4.City\n5.State\n6.Zip code\n7.Phone no.\n8.email");
                     int inputForEditing = Convert.ToInt32(Console.ReadLine());
                     editCheck++;
                     switch (inputForEditing)
                     {
                         case 1:
-                            firstname: Console.WriteLine("please enter the first name");
+firstname: Console.WriteLine("please enter the first name");
                             string newFirstName = Console.ReadLine();
                             if (contactDetails.firstName == newFirstName)
                             {
@@ -137,7 +137,7 @@ namespace AddressBook
                                 break;
                             }
                         case 2:
-                            lastname: Console.WriteLine("please enter the last name");
+lastname: Console.WriteLine("please enter the last name");
                             string newlastName = Console.ReadLine();
                             if (contactDetails.lastName == newlastName)
                             {
@@ -160,7 +160,7 @@ namespace AddressBook
                                 break;
                             }
                         case 3:
-                            address: Console.WriteLine("please enter the address");
+address: Console.WriteLine("please enter the address");
                             string newaddress = Console.ReadLine();
                             if (contactDetails.address == newaddress)
                             {
@@ -183,7 +183,7 @@ namespace AddressBook
                                 break;
                             }
                         case 4:
-                            city: Console.WriteLine("please enter the city");
+city: Console.WriteLine("please enter the city");
                             string newcity = Console.ReadLine();
                             if (contactDetails.city == newcity)
                             {
@@ -206,7 +206,7 @@ namespace AddressBook
                                 break;
                             }
                         case 5:
-                            state: Console.WriteLine("please enter the state");
+state: Console.WriteLine("please enter the state");
                             string newstate = Console.ReadLine();
                             if (contactDetails.state == newstate)
                             {
@@ -229,7 +229,7 @@ namespace AddressBook
                                 break;
                             }
                         case 6:
-                            zip: Console.WriteLine("please enter the zip code");
+zip: Console.WriteLine("please enter the zip code");
                             int newzip = Convert.ToInt32(Console.ReadLine());
                             if (contactDetails.zip == newzip)
                             {
@@ -252,7 +252,7 @@ namespace AddressBook
                                 break;
                             }
                         case 7:
-                            phoneno: Console.WriteLine("please enter the zip code");
+phoneno: Console.WriteLine("please enter the zip code");
                             double newmobileno = Convert.ToDouble(Console.ReadLine());
                             if (contactDetails.phoneNo == newmobileno || newmobileno <= 200000)
                             {
@@ -275,7 +275,7 @@ namespace AddressBook
                                 break;
                             }
                         case 8:
-                            email: Console.WriteLine("please enter the email code");
+email: Console.WriteLine("please enter the email code");
                             string newemail = Console.ReadLine();
                             if (contactDetails.eMail == newemail)
                             {
@@ -336,7 +336,7 @@ namespace AddressBook
         /// </summary>
         public void DeletingContactDetails()
         {
-            addingDetailsForDeleting: Console.WriteLine("Please help us, first identify you");
+addingDetailsForDeleting: Console.WriteLine("Please help us, first identify you");
             Console.WriteLine("Please enter your first name and phone no");
             string firstNm = Console.ReadLine();
             double mobileNo = Convert.ToDouble(Console.ReadLine());
@@ -396,6 +396,62 @@ namespace AddressBook
             }
             return true;
         }
-    }
 
+        /// <summary>
+        /// Method to search contact details using city
+        /// </summary>
+        /// <param name="searchCity"></param>
+        /// <returns>used to throw exception</returns>
+        public bool SearchingContactDetailsByCity(string searchCity)
+        {
+            //used to check if city exist and increments the index. If index=0, exception is thrown
+            int index = 0;
+            foreach (ContactDetails contactPerson in contactDetailsList)
+            {
+                //checks if city is there in list
+                if (contactPerson.city.Equals(searchCity))
+                {
+                    Console.WriteLine($"First Name : {contactPerson.firstName} || Last Name: {contactPerson.lastName} || Address: {contactPerson.address} || City: {contactPerson.city} || State: {contactPerson.state}|| zip: {contactPerson.zip} || Phone No: {contactPerson.phoneNo} || eMail: {contactPerson.eMail}");
+                    index++;
+                }
+            }
+            if (index == 0)
+            {
+                throw new("False");
+
+            }
+            else
+            {
+                return true;
+            }
+        }
+        /// <summary>
+        /// Method to search details using state
+        /// </summary>
+        /// <param name="searchState"></param>
+        /// <returns>used to throw exception</returns>
+        public bool SearchingContactDetailsByState(string searchState)
+        {
+            //index is used to check if state exist
+            int index = 0;
+            foreach (ContactDetails contactPerson in contactDetailsList)
+            {
+                if (contactPerson.state.Equals(searchState))
+                {
+                    //Displays details for particular state
+                    Console.WriteLine($"First Name : {contactPerson.firstName} || Last Name: {contactPerson.lastName} || Address: {contactPerson.address} || City: {contactPerson.city} || State: {contactPerson.state}|| zip: {contactPerson.zip} || Phone No: {contactPerson.phoneNo} || eMail: {contactPerson.eMail}");
+                    index++;
+                }
+            }
+            if (index == 0)
+            {
+                throw new("False");
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+    }
 }

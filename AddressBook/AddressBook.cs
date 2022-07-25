@@ -112,5 +112,72 @@ namespace AddressBook
                 addressBookMapper.Remove(name);
             }
         }
+        public void SearchingByCity()
+        {
+            try
+            {
+                Console.WriteLine("Please enter the city");
+                string searchCity = Console.ReadLine();
+                //foreach loop to print name of address book and pass address book value to contact person information class
+                foreach (KeyValuePair<string, ContactPersonInformation> keyValuePair in addressBookMapper)
+                {
+                    Console.WriteLine("Name of the address book: " + keyValuePair.Key);
+                    ContactPersonInformation contactPersonInformation = keyValuePair.Value;
+                    bool checkForException = contactPersonInformation.SearchingContactDetailsByCity(searchCity);
+                }
+            }
+            //catches exception if city name does not exist
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Do you want to enter city again, press y for yes");
+                string checkInput = Console.ReadLine();
+                if (checkInput.ToLower() == "y")
+                {
+                    SearchingByCity();
+                }
+                else
+                {
+                    Console.WriteLine("No city entered");
+
+                }
+            }
+        }
+        /// <summary>
+        /// Searching by state to get address book and contact details
+        /// </summary>
+        public void SearchingByState()
+        {
+            //used to find custom exception, if state do not exist
+            try
+            {
+                Console.WriteLine("Please enter the state");
+                string searchState = Console.ReadLine();
+                //foreach loop is used to print key for dictionary and pass the values of dictionary to contact person information class
+                foreach (KeyValuePair<string, ContactPersonInformation> keyValuePair in addressBookMapper)
+                {
+                    Console.WriteLine("Name of the address book: " + keyValuePair.Key);
+                    ContactPersonInformation contactPersonInformation = keyValuePair.Value;
+                    bool checkForException = contactPersonInformation.SearchingContactDetailsByState(searchState);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Exception message
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Do you want to enter state again, press y for yes");
+                string checkInput = Console.ReadLine();
+                if (checkInput.ToLower() == "y")
+                {
+                    //Details of state are entered again.
+                    SearchingByState();
+                }
+                else
+                {
+                    Console.WriteLine("No state entered");
+
+                }
+            }
+        }
     }
 }
